@@ -1,0 +1,6 @@
+name: "dino"
+instances {
+  id: "dino"
+  prototype: "/game/player/dino.go"
+}
+scale_along_z: 0

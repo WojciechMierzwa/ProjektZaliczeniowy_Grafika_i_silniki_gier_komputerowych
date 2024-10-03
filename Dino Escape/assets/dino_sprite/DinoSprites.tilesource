@@ -1,0 +1,30 @@
+image: "/assets/dino_sprite/DinoSprites - doux.png"
+tile_width: 24
+tile_height: 22
+collision_groups: "default"
+animations {
+  id: "anim"
+  start_tile: 1
+  end_tile: 1
+}
+animations {
+  id: "idle"
+  start_tile: 2
+  end_tile: 3
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 3
+}
+animations {
+  id: "jump"
+  start_tile: 3
+  end_tile: 5
+  fps: 5
+}
+animations {
+  id: "run"
+  start_tile: 4
+  end_tile: 10
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 7
+}
+extrude_borders: 2

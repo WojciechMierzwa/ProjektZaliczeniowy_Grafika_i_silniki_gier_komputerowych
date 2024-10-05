@@ -15,6 +15,8 @@ local JUMP_ANIM = hash("player_jump")
 local CONTACT_POINT_RESPONSE = hash("contact_point_response")
 local GROUND_LAYER = hash("ground")
 
+local INCREASE_SCORE = hash("increase_score")
+
 
 
 function init(self)
@@ -115,6 +117,11 @@ function on_message(self, message_id, message, sender)
 		if message.group == GROUND_LAYER then
 			handle_obstacle_contact(self, message.normal, message.distance)
 		end
+	elseif message_id == INCREASE_SCORE then
+		self.score = self.score + message.amount
+		print(self.score)
+		--update the gui
+		--noises
 	end
 end
 

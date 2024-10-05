@@ -14,7 +14,7 @@ function init(self)
 	self.reloading_level = false
 	
 	msg.post(".", "acquire_input_focus")
-
+	print(msg.url())
 	load_level(self, "level1")
 end
 

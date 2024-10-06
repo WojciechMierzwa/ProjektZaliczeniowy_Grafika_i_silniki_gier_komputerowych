@@ -1,0 +1,24 @@
+go.property("move_direction", vmath.vector3())
+go.property("move_distance", 100)
+go.property("move_speed", 20)
+
+local TRIGGER_RESPONSE = hash("trigger_response")
+local PLAYER_GROUP = hash("player")
+
+function init(self)
+	local pos = go.get_position()
+	local to = pos + (self.move_direction * self.move_distance)
+	local duration = self.move_distance / self.move_speed
+
+	go.animate(".", "position", go.PLAYBACK_LOOP_PINGPONG, to, go.EASING_LINEAR, duration)
+	sprite.set_hflip("#sprite", self.facing_direction == -1)
+	if self.is_bot == true then
+		sprite.play_flipbook("#sprite", "enemy_bot")
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == TRIGGER_RESPONSE and message.group == PLAYER_GROUP then
+		msg.post("game_controller:/game_controller#game_controller", "reload_level")
+	end
+end

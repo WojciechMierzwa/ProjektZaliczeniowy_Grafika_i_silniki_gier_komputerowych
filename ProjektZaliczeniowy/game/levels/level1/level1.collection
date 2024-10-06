@@ -5,7 +5,7 @@ instances {
   position {
     x: 102.0
     y: 273.0
-    z: 0.0
+    z: 1.0
   }
   rotation {
     x: 0.0
@@ -112,6 +112,34 @@ instances {
     y: 0.0
     z: 0.0
     w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "enemy_walking"
+  prototype: "/game/enemies/enemy_walking/enemy_walking.go"
+  position {
+    x: 431.0
+    y: 331.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "enemy_walking"
+    properties {
+      id: "move_direction"
+      value: "1.0, 0.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
   }
   scale3 {
     x: 1.0

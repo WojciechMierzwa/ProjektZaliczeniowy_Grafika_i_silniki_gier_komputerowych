@@ -1,0 +1,28 @@
+go.property("yellow", false)
+go.property("blue", false)
+go.property("gray", false)
+
+local TRIGGER_RESPONSE = hash("trigger_response")
+local PLAYER_GROUP = hash("player")
+
+function init(self)
+
+
+	go.animate(".", "position")
+
+	if self.yellow == true then
+		sprite.play_flipbook("#sprite", "spikes_y")
+	end
+	if self.blue == true then
+		sprite.play_flipbook("#sprite", "spikes_b")
+	end
+	if self.gray == true then
+		sprite.play_flipbook("#sprite", "spikes_g")
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == TRIGGER_RESPONSE and message.group == PLAYER_GROUP then
+		msg.post("game_controller:/game_controller#game_controller", "reload_level")
+	end
+end

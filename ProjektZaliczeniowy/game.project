@@ -1,5 +1,5 @@
 [bootstrap]
-main_collection = /game/levels/level1/level1.collectionc
+main_collection = /game/game_controller/game_controller.collectionc
 
 [script]
 shared_state = 1

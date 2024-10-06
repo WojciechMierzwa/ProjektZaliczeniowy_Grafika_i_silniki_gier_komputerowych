@@ -94,7 +94,7 @@ embedded_components {
   "far_z: 1000.0\n"
   "auto_aspect_ratio: 1\n"
   "orthographic_projection: 1\n"
-  "orthographic_zoom: 3.0\n"
+  "orthographic_zoom: 2.5\n"
   ""
   position {
     x: 0.0

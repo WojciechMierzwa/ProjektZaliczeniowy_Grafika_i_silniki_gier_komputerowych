@@ -13,6 +13,21 @@ components {
     w: 1.0
   }
 }
+components {
+  id: "player_hud"
+  component: "/game/player/player_hud.gui"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
 embedded_components {
   id: "sprite"
   type: "sprite"
@@ -47,7 +62,7 @@ embedded_components {
   "group: \"player\"\n"
   "mask: \"ground\"\n"
   "mask: \"enemy\"\n"
-  "mask: \"and_flag\"\n"
+  "mask: \"end_flag\"\n"
   "mask: \"coin\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
@@ -96,6 +111,52 @@ embedded_components {
   "auto_aspect_ratio: 1\n"
   "orthographic_projection: 1\n"
   "orthographic_zoom: 3.0\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+embedded_components {
+  id: "sound_jump"
+  type: "sound"
+  data: "sound: \"/assets/audio/jump.ogg\"\n"
+  "looping: 0\n"
+  "group: \"master\"\n"
+  "gain: 1.0\n"
+  "pan: 0.0\n"
+  "speed: 1.0\n"
+  "loopcount: 0\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+embedded_components {
+  id: "sound_coin"
+  type: "sound"
+  data: "sound: \"/assets/audio/coin.ogg\"\n"
+  "looping: 0\n"
+  "group: \"master\"\n"
+  "gain: 1.0\n"
+  "pan: 0.0\n"
+  "speed: 1.0\n"
+  "loopcount: 0\n"
   ""
   position {
     x: 0.0

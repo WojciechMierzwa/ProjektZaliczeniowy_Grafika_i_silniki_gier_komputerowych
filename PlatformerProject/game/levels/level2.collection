@@ -1,30 +1,10 @@
-name: "level1"
-instances {
-  id: "player"
-  prototype: "/game/player/player.go"
-  position {
-    x: 15.0
-    y: 196.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
+name: "level2"
 instances {
   id: "enemy"
   prototype: "/game/entities/enemy.go"
   position {
-    x: 478.0
-    y: 182.0
+    x: 176.0
+    y: 105.0
     z: 0.0
   }
   rotation {
@@ -51,8 +31,51 @@ instances {
   id: "enemy1"
   prototype: "/game/entities/enemy.go"
   position {
-    x: 538.0
-    y: 204.0
+    x: 893.0
+    y: 133.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "enemy"
+    properties {
+      id: "move_direction"
+      value: "1.0, 0.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "move_distance"
+      value: "60.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "move_speed"
+      value: "25.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "is_bot"
+      value: "true"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "enemy2"
+  prototype: "/game/entities/enemy.go"
+  position {
+    x: 705.0
+    y: 205.0
     z: 0.0
   }
   rotation {
@@ -86,11 +109,11 @@ instances {
   }
 }
 instances {
-  id: "coin"
-  prototype: "/game/entities/coin.go"
+  id: "enemy3"
+  prototype: "/game/entities/enemy.go"
   position {
-    x: 159.0
-    y: 213.0
+    x: 471.0
+    y: 115.0
     z: 0.0
   }
   rotation {
@@ -99,25 +122,13 @@ instances {
     z: 0.0
     w: 1.0
   }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "coin1"
-  prototype: "/game/entities/coin.go"
-  position {
-    x: 261.0
-    y: 297.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
+  component_properties {
+    id: "enemy"
+    properties {
+      id: "move_direction"
+      value: "1.0, 1.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
   }
   scale3 {
     x: 1.0
@@ -126,51 +137,11 @@ instances {
   }
 }
 instances {
-  id: "coin2"
-  prototype: "/game/entities/coin.go"
+  id: "player"
+  prototype: "/game/player/player.go"
   position {
-    x: 581.0
-    y: 213.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "coin3"
-  prototype: "/game/entities/coin.go"
-  position {
-    x: 376.0
-    y: 209.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "coin4"
-  prototype: "/game/entities/coin.go"
-  position {
-    x: 249.0
-    y: 180.0
+    x: 39.0
+    y: 141.0
     z: 0.0
   }
   rotation {
@@ -189,8 +160,8 @@ instances {
   id: "end_flag"
   prototype: "/game/entities/end_flag.go"
   position {
-    x: 1217.0
-    y: 203.0
+    x: 1110.0
+    y: 81.0
     z: 0.0
   }
   rotation {
@@ -203,9 +174,109 @@ instances {
     id: "end_flag"
     properties {
       id: "next_level"
-      value: "level2"
+      value: "level1"
       type: PROPERTY_TYPE_HASH
     }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin"
+  prototype: "/game/entities/coin.go"
+  position {
+    x: 281.0
+    y: 150.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin1"
+  prototype: "/game/entities/coin.go"
+  position {
+    x: 414.0
+    y: 189.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin2"
+  prototype: "/game/entities/coin.go"
+  position {
+    x: 922.0
+    y: 131.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin3"
+  prototype: "/game/entities/coin.go"
+  position {
+    x: 548.0
+    y: 139.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin4"
+  prototype: "/game/entities/coin.go"
+  position {
+    x: 746.0
+    y: 203.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
   }
   scale3 {
     x: 1.0
@@ -216,9 +287,20 @@ instances {
 scale_along_z: 0
 embedded_instances {
   id: "level"
+  children: "coin"
+  children: "coin1"
+  children: "coin2"
+  children: "coin3"
+  children: "coin4"
+  children: "end_flag"
+  children: "enemy"
+  children: "enemy1"
+  children: "enemy2"
+  children: "enemy3"
+  children: "player"
   data: "components {\n"
-  "  id: \"level1_tilemap\"\n"
-  "  component: \"/game/levels/level1_tilemap.tilemap\"\n"
+  "  id: \"level2_tilemap\"\n"
+  "  component: \"/game/levels/level2_tilemap.tilemap\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
@@ -236,7 +318,7 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
-  "  data: \"collision_shape: \\\"/game/levels/level1_tilemap.tilemap\\\"\\n"
+  "  data: \"collision_shape: \\\"/game/levels/level2_tilemap.tilemap\\\"\\n"
   "type: COLLISION_OBJECT_TYPE_STATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.1\\n"

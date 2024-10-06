@@ -1,0 +1,15 @@
+local TRIGGER_RESPONSE = hash("trigger_response")
+local PLAYER_GROUP = hash("player")
+
+function init(self)
+	go.animate(".")
+end
+
+
+
+function on_message(self, message_id, message, sender)
+	if message_id == TRIGGER_RESPONSE and message.group == PLAYER_GROUP then
+		msg.post(message.other_id, "increase_score", {amount = 1})
+		go.delete()
+	end
+end

@@ -60,26 +60,6 @@ instances {
   }
 }
 instances {
-  id: "life"
-  prototype: "/game/objects/life/life.go"
-  position {
-    x: 147.0
-    y: 284.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
   id: "key"
   prototype: "/game/objects/key/key.go"
   position {
@@ -120,12 +100,112 @@ instances {
   }
 }
 instances {
-  id: "enemy_walking"
-  prototype: "/game/enemies/enemy_walking/enemy_walking.go"
+  id: "coin1"
+  prototype: "/game/objects/coin/coin.go"
   position {
-    x: 431.0
-    y: 331.0
+    x: 149.0
+    y: 304.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.8
+    y: 0.8
     z: 1.0
+  }
+}
+instances {
+  id: "spikes1"
+  prototype: "/game/enemies/spikes/spikes.go"
+  position {
+    x: 1617.0
+    y: 302.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "spikes2"
+  prototype: "/game/enemies/spikes/spikes.go"
+  position {
+    x: 1586.0
+    y: 302.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "spikes3"
+  prototype: "/game/enemies/spikes/spikes.go"
+  position {
+    x: 1648.0
+    y: 302.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "spikes4"
+  prototype: "/game/enemies/spikes/spikes.go"
+  position {
+    x: 1678.0
+    y: 302.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "basic_enemy"
+  prototype: "/game/enemies/basic_enemy/basic_enemy.go"
+  position {
+    x: 455.0
+    y: 330.0
+    z: 0.0
   }
   rotation {
     x: 0.0
@@ -134,7 +214,7 @@ instances {
     w: 1.0
   }
   component_properties {
-    id: "enemy_walking"
+    id: "basic_enemy"
     properties {
       id: "move_direction"
       value: "1.0, 0.0, 0.0"

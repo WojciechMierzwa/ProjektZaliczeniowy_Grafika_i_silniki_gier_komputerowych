@@ -1,6 +1,6 @@
-image: "/assets/enemies/snail/snail.png"
-tile_width: 38
-tile_height: 24
+image: "/assets/enemies/dino/dino_b.png"
+tile_width: 24
+tile_height: 20
 tile_margin: 0
 tile_spacing: 0
 collision: ""
@@ -16,12 +16,21 @@ animations {
   flip_vertical: 0
 }
 animations {
-  id: "snail_walk"
-  start_tile: 1
+  id: "dino_walk"
+  start_tile: 5
   end_tile: 10
-  playback: PLAYBACK_LOOP_PINGPONG
-  fps: 6
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 5
   flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "dino_walk_reverse"
+  start_tile: 5
+  end_tile: 10
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 5
+  flip_horizontal: 1
   flip_vertical: 0
 }
 extrude_borders: 2

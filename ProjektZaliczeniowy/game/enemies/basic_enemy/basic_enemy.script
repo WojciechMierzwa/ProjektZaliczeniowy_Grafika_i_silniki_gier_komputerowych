@@ -4,17 +4,38 @@ go.property("move_speed", 20)
 
 local TRIGGER_RESPONSE = hash("trigger_response")
 local PLAYER_GROUP = hash("player")
+local PREV_POS
+local current_animation
 
 function init(self)
 	local pos = go.get_position()
 	local to = pos + (self.move_direction * self.move_distance)
 	local duration = self.move_distance / self.move_speed
 
-	go.animate(".", "position", go.PLAYBACK_LOOP_PINGPONG, to, go.EASING_LINEAR, duration)
-	sprite.set_hflip("#sprite", self.facing_direction == -1)
-	if self.is_bot == true then
-		sprite.play_flipbook("#sprite", "enemy_bot")
+	if PREV_POS == nil then
+		PREV_POS = pos
 	end
+
+	go.animate(".", "position", go.PLAYBACK_LOOP_PINGPONG, to, go.EASING_LINEAR, duration)
+end
+
+function update(self, dt)
+	local pos = go.get_position()
+
+	if pos.x < PREV_POS.x then
+		if current_animation ~= "dino_walk_reverse" then
+			sprite.play_flipbook("#sprite", "dino_walk_reverse")
+			current_animation = "dino_walk_reverse"
+		end
+	elseif pos.x > PREV_POS.x then
+		if current_animation ~= "dino_walk" then
+			sprite.play_flipbook("#sprite", "dino_walk")
+			current_animation = "dino_walk"
+		end
+	end
+
+	-- Update previous position
+	PREV_POS = pos
 end
 
 function on_message(self, message_id, message, sender)

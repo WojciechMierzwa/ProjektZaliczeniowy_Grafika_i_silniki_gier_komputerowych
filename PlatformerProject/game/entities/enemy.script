@@ -15,6 +15,7 @@ function init(self)
 
 	if self.is_bot == true then
 		sprite.play_flipbook("#sprite", "enemy_bot")
+		
 	end
 end
 

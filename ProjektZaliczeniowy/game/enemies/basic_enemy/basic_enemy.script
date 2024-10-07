@@ -50,11 +50,18 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == TRIGGER_RESPONSE and message.group == PLAYER_GROUP then
-		local player_boosted = msg.post(sender, "is_boosted")
-		print("Player boosted status:", player_boosted)
-		if player_boosted == true then
+		print("Enemy collided with player!")
+
+		-- Access the global boost variable directly
+		if boost == true then
+			print("Global boost is active, enemy dies!")
 			die(self)
+			timer.delay(0.8, false, function()
+				boost = false
+				print("Boost deactivated after 0.5 seconds.")
+			end)
 		else
+			print("Global boost is not active, reloading level")
 			msg.post("game_controller:/game_controller#game_controller", "reload_level")
 		end
 	end

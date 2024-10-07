@@ -2,6 +2,7 @@ go.property("move_direction", vmath.vector3())
 go.property("move_distance", 100)
 go.property("move_speed", 20)
 
+
 local TRIGGER_RESPONSE = hash("trigger_response")
 local PLAYER_GROUP = hash("player")
 local PREV_POS
@@ -38,8 +39,23 @@ function update(self, dt)
 	PREV_POS = pos
 end
 
+function die(self)
+	is_alive = false
+	sprite.play_flipbook("#sprite", "dino_die") -- Play dying animation
+	-- Optional: Schedule deletion or disable the object
+	timer.delay(1, false, function() 
+		go.delete() -- Deletes the enemy after 1 second
+	end)
+end
+
 function on_message(self, message_id, message, sender)
 	if message_id == TRIGGER_RESPONSE and message.group == PLAYER_GROUP then
-		msg.post("game_controller:/game_controller#game_controller", "reload_level")
+		local player_boosted = msg.post(sender, "is_boosted")
+		print("Player boosted status:", player_boosted)
+		if player_boosted == true then
+			die(self)
+		else
+			msg.post("game_controller:/game_controller#game_controller", "reload_level")
+		end
 	end
 end

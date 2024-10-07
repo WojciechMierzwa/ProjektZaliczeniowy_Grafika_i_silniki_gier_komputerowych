@@ -8,8 +8,14 @@ end
 
 
 function on_message(self, message_id, message, sender)
+	if message_id == ACTIVATE_BOOST then
+		self.boost = true
+	elseif message_id == hash("check_boost") then
+		-- Respond with current boost status
+		msg.post(sender, "boost_status", {is_boosted = self.boost})
+	end
 	if message_id == TRIGGER_RESPONSE and message.group == PLAYER_GROUP then
-		--msg.post(message.other_id, "increase_score", {amount = 1})
+		msg.post(message.other_id, "activate_boost", {boost = true})
 		go.delete()
 	end
 end

@@ -83,7 +83,7 @@ instances {
   id: "boost"
   prototype: "/game/objects/boost/boost.go"
   position {
-    x: 228.0
+    x: 126.0
     y: 290.0
     z: 0.0
   }

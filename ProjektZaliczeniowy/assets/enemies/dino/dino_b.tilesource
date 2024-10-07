@@ -16,6 +16,15 @@ animations {
   flip_vertical: 0
 }
 animations {
+  id: "dino_die"
+  start_tile: 15
+  end_tile: 16
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 3
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
   id: "dino_walk"
   start_tile: 5
   end_tile: 10

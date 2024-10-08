@@ -42,32 +42,24 @@ end
 function die(self)
 	is_alive = false
 
-	-- Play the dying animation
 	sprite.play_flipbook("#sprite", "dino_die")
 
-	-- Set the duration of the knockback movement
-	local knockback_distance_x = 100  -- Distance to move on the X axis
-	local arch_height = 75  -- Maximum height of the arch on the Y axis
-	local duration = 0.75  -- Duration of the knockback animation
+	local knockback_distance_x = 200  
+	local arch_height = 150 
+	local duration = 0.75 
 
-	-- Cancel any ongoing animations to prevent conflicts
 	go.cancel_animations(".", "position")
 
-	-- Optional: Delay the start of the knockback to allow the dying animation to play
-	timer.delay(0.5, false, function()  -- Delay before starting knockback (adjust as needed)
-		-- Animate X-axis: move horizontally with the knockback
+	timer.delay(0.1, false, function() 
 		go.animate(".", "position.x", go.PLAYBACK_ONCE_FORWARD, PREV_POS.x + knockback_distance_x, go.EASING_OUTQUAD, duration)
 
-		-- Animate Y-axis: move upward then downward to create an arch
 		go.animate(".", "position.y", go.PLAYBACK_ONCE_FORWARD, PREV_POS.y + arch_height, go.EASING_OUTSINE, duration / 2, 0, function()
-			-- After reaching the peak of the arch, move back down
 			go.animate(".", "position.y", go.PLAYBACK_ONCE_FORWARD, PREV_POS.y, go.EASING_INSINE, duration / 2)
 		end)
 	end)
 
-	-- Delete the enemy after the knockback and animation
 	timer.delay(duration + 0.7, false, function() 
-		go.delete() -- Adjusted to ensure both animations have time to finish
+		go.delete() 
 	end)
 end
 

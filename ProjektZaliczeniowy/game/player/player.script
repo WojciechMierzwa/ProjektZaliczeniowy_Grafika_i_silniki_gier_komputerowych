@@ -25,15 +25,7 @@ local INCREASE_KEY = hash("increase_key")
 local ACTIVATE_BOOST = hash("activate_boost")
 local INCREASE_LIFE = hash("increase_life")
 
-function lose_life()
-	life = life - 1
-	msg.post("player_bar_gui", "update_life")
-end
 
-function gain_life()
-	life = life + 1
-	msg.post("player_bar_gui", "update_life")
-end
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
@@ -139,6 +131,7 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == ACTIVATE_BOOST then
+		sound.play("#sound_boost")
 		boost = true  -- Modify global boost variable
 		print("Global boost activated!")
 
@@ -153,6 +146,7 @@ function on_message(self, message_id, message, sender)
 		end
 
 	elseif message_id == INCREASE_SCORE then
+		sound.play("#sound_coin")
 		self.score = self.score + message.amount
 		msg.post("#player_hud", "update_score_text", {score = self.score})
 		print("Player score:", self.score)

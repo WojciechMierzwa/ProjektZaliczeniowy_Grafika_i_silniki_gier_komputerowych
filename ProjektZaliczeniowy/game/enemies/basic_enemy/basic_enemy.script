@@ -73,6 +73,7 @@ function on_message(self, message_id, message, sender)
 		-- Access the global boost variable directly
 		if boost == true then
 			print("Global boost is active, enemy dies!")
+			sound.play("#sound_yeet")
 			die(self)
 			timer.delay(0.8, false, function()
 				boost = false

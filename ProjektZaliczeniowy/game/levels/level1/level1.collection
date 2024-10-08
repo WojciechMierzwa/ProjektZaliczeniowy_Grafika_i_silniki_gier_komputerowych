@@ -227,6 +227,26 @@ instances {
     z: 1.0
   }
 }
+instances {
+  id: "coin2"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 70.0
+    y: 276.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.8
+    y: 0.8
+    z: 1.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "level"

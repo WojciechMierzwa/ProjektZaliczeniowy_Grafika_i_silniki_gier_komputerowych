@@ -6,6 +6,7 @@ local NORMAL_THRESHOLD = 0.8
 
 -- Global boost variable
 boost = false
+life = 3
 
 local MOVE_LEFT_INPUT = hash("move_left")
 local MOVE_RIGHT_INPUT = hash("move_right")
@@ -24,6 +25,16 @@ local INCREASE_KEY = hash("increase_key")
 local ACTIVATE_BOOST = hash("activate_boost")
 local INCREASE_LIFE = hash("increase_life")
 
+function lose_life()
+	life = life - 1
+	msg.post("player_bar_gui", "update_life")
+end
+
+function gain_life()
+	life = life + 1
+	msg.post("player_bar_gui", "update_life")
+end
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
 	msg.post("@render:", "use_camera_projection")
@@ -37,7 +48,6 @@ function init(self)
 	self.anim = nil
 	self.score = 0
 	self.key = 0
-	self.life = 3
 end
 
 local function clamp(value, min, max)

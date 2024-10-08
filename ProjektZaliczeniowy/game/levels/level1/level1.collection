@@ -205,7 +205,7 @@ instances {
   position {
     x: 455.0
     y: 330.0
-    z: 0.0
+    z: 1.0
   }
   rotation {
     x: 0.0

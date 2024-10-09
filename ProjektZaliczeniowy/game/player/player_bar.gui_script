@@ -1,46 +1,36 @@
--- player_bar_gui.script
 
--- Table to store the heart nodes so we can update/remove them
 local hearts = {}
 
 function init(self)
-	-- Draw initial hearts based on life
-	
-	update_hearts()
+	print("Initializing hearts...")
+	gui.set_enabled(gui.get_node("heart_box"), true)
+	update_hearts() 
 end
 
--- Function to update hearts based on the 'life' value
 function update_hearts()
-	-- First, delete all existing heart nodes
 	for _, heart_node in ipairs(hearts) do
 		gui.delete_node(heart_node)
 	end
-	-- Clear the hearts table
-	hearts = {}
+	hearts = {} 
 
 	-- Create hearts based on the global 'life' variable
 	for i = 1, life do
-		-- Clone the heart_box node to create each heart
 		local heart_node = gui.clone(gui.get_node("heart_box"))
-		table.insert(hearts, heart_node)
+		table.insert(hearts, heart_node) 
 
-		-- Position each heart with some spacing (e.g., 70 units apart)
 		local pos = gui.get_position(heart_node)
-		pos.x = pos.x + (i - 1) * 70  -- Adjust the spacing as needed
-		gui.set_position(heart_node, pos)
+		pos.x = pos.x + (i - 1) * 70 
+		gui.set_position(heart_node, pos) 
 
-		-- Set the heart texture (assuming it's named "heart" in the atlas)
 		gui.play_flipbook(heart_node, "heart")
 	end
-
-	-- Optionally hide the original heart_box (template)
-	gui.set_enabled(gui.get_node("heart_box"), false)
 end
 
 -- Function to handle messages
 function on_message(self, message_id, message, sender)
 	if message_id == hash("update_life") then
-		-- Update the hearts when the life changes
-		update_hearts()
+		print("Current life before update:", life) 
+		update_hearts()  
+		print("Current life after update:", life) 
 	end
 end

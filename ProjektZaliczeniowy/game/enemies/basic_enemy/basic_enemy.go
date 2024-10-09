@@ -88,7 +88,7 @@ embedded_components {
 embedded_components {
   id: "sound_yeet"
   type: "sound"
-  data: "sound: \"/assets/sound/punch.wav\"\n"
+  data: "sound: \"/assets/sound/yeet.ogg\"\n"
   "looping: 0\n"
   "group: \"master\"\n"
   "gain: 1.0\n"

@@ -80,26 +80,6 @@ instances {
   }
 }
 instances {
-  id: "boost"
-  prototype: "/game/objects/boost/boost.go"
-  position {
-    x: 126.0
-    y: 290.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
   id: "coin1"
   prototype: "/game/objects/coin/coin.go"
   position {
@@ -228,11 +208,11 @@ instances {
   }
 }
 instances {
-  id: "coin2"
-  prototype: "/game/objects/coin/coin.go"
+  id: "life"
+  prototype: "/game/objects/life/life.go"
   position {
-    x: 70.0
-    y: 276.0
+    x: 138.0
+    y: 277.0
     z: 0.0
   }
   rotation {
@@ -242,8 +222,8 @@ instances {
     w: 1.0
   }
   scale3 {
-    x: 0.8
-    y: 0.8
+    x: 1.0
+    y: 1.0
     z: 1.0
   }
 }

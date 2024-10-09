@@ -4,7 +4,7 @@ local MAX_FALL_SPEED = 500
 local JUMP_SPEED = 300
 local NORMAL_THRESHOLD = 0.8
 
--- Global boost variable
+
 boost = false
 life = 3
 is_hurt = false
@@ -85,31 +85,7 @@ local function update_animations(self)
 	end
 end
 
-function hurt_player(self)
-	-- Decrease life
-	life = life - 1
 
-	-- Apply knockback in the opposite direction of facing
-	if self.facing_direction == 1 then
-		self.velocity.x = -KNOCKBACK_FORCE
-	else
-		self.velocity.x = KNOCKBACK_FORCE
-	end
-
-	-- Play hurt animation
-	play_animation(self, PLAYER_HURT_ANIM)
-
-	-- Check if the player has lost all lives
-	if life <= 0 then
-		print("Player is dead!")
-		-- Add death logic here, such as reloading the level
-	end
-
-	-- Knockback only applies for a short time, after which normal movement resumes
-	timer.delay(KNOCKBACK_DURATION, false, function()
-		self.velocity.x = 0 -- Stop the knockback effect after the duration
-	end)
-end
 
 
 function fixed_update(self, dt)
@@ -187,10 +163,10 @@ function on_message(self, message_id, message, sender)
 		self.score = self.score + message.amount
 		msg.post("#player_hud", "update_score_text", {score = self.score})
 		print("Player score:", self.score)
+	elseif message_id == INCREASE_LIFE then
+		life = life + message.amount
+		msg.post("player#player_bar", "update_life")
 
-		-- Handle player being hurt
-	elseif message_id == hash("player_hit") then  -- Assuming 'player_hit' is sent when the player takes damage
-	hurt_player(self)
 end
 end
 

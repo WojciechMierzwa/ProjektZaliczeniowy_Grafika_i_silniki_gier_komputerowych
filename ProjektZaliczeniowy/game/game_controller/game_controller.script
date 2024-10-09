@@ -12,10 +12,10 @@ end
 function init(self)
 	self.current_level = nil
 	self.reloading_level = false
-
+	msg.post("@render:", "clear_color", { color = vmath.vector4(0.5, 0.5, 0.5, 1) } )
 	msg.post(".", "acquire_input_focus")
 	print(msg.url())
-	load_level(self, "level1")
+	load_level(self, "menu")
 end
 
 

@@ -10,6 +10,7 @@ local function load_level (self, level_to_load)
 end
 
 function init(self)
+	msg.post("@render:", "clear_color", { color = vmath.vector4(1, 0, 0, 0) } )
 	self.current_level = nil
 	self.reloading_level = false
 	

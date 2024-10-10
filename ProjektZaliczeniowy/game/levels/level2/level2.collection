@@ -119,6 +119,54 @@ instances {
     z: 1.0
   }
 }
+instances {
+  id: "bat"
+  prototype: "/game/enemies/bat/bat.go"
+  position {
+    x: 311.0
+    y: 461.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "bat1"
+    properties {
+      id: "move_direction"
+      value: "0.0, 1.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "boost"
+  prototype: "/game/objects/boost/boost.go"
+  position {
+    x: 264.0
+    y: 434.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "level2"

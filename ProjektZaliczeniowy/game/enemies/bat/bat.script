@@ -1,0 +1,84 @@
+go.property("move_direction", vmath.vector3())
+go.property("move_distance", 100)
+go.property("move_speed", 20)
+go.property("is_evil", false)
+
+local TRIGGER_RESPONSE = hash("trigger_response")
+local PLAYER_GROUP = hash("player")
+local PREV_POS
+local current_animation
+
+function init(self)
+	local pos = go.get_position()
+	local to = pos + (self.move_direction * self.move_distance)
+	local duration = self.move_distance / self.move_speed
+
+	if PREV_POS == nil then
+		PREV_POS = pos
+	end
+
+	if self.is_evil == true then
+		sprite.play_flipbook("#sprite", "bat2")
+
+	end
+
+	go.animate(".", "position", go.PLAYBACK_LOOP_PINGPONG, to, go.EASING_LINEAR, duration)
+end
+
+function die(self)
+	local is_alive = false
+	sprite.play_flipbook("#sprite", "bat_die")
+
+	-- Set parameters for falling animation
+	local fall_distance = 200  -- How far down the enemy falls
+	local duration = 1.0       -- Increased duration for a slower fall
+
+	-- Cancel any ongoing animations
+	go.cancel_animations(".", "position")
+
+	-- Animate the enemy falling down
+	go.animate(".", "position.y", go.PLAYBACK_ONCE_FORWARD, go.get_position().y - fall_distance, go.EASING_OUTSINE, duration)
+
+	-- Delete the enemy after the fall
+	timer.delay(duration, false, function() 
+		go.delete()
+		msg.post("game_controller:/game_controller#game_controller", "increase_enemy_score", {amount = 1})
+	end)
+end
+
+local DAMAGE_COOLDOWN = 1  
+local can_take_damage = true 
+
+function on_message(self, message_id, message, sender)
+	if message_id == TRIGGER_RESPONSE and message.group == PLAYER_GROUP then
+		print("Enemy collided with player!")
+
+		if boost == true then
+			print("Global boost is active, enemy dies!")
+			sound.play("#sound_yeet")
+			die(self)
+			timer.delay(0.8, false, function()
+				boost = false
+				print("Boost deactivated after 0.5 seconds.")
+			end)
+		else
+			if can_take_damage then
+				life = life - 1
+				is_hurt = true
+				print("Player life:", life)
+				can_take_damage = false
+				msg.post("player#player_bar", "update_life")
+				if life == 0 then
+					msg.post("game_controller:/game_controller#game_controller", "reload_level")
+				end
+				timer.delay(DAMAGE_COOLDOWN, false, function()
+					can_take_damage = true
+					is_hurt = false
+					print("Player can take damage again.")
+				end)
+			else
+				print("Player is in damage cooldown, can't take damage.")
+			end
+		end
+	end
+end

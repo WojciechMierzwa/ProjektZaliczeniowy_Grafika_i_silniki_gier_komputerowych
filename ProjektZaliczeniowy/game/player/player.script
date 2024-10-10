@@ -147,7 +147,7 @@ function on_message(self, message_id, message, sender)
 	if message_id == ACTIVATE_BOOST then
 		sound.play("#sound_boost")
 		boost = true
-		print("Global boost activated!")
+		msg.post("game_controller:/game_controller#game_controller", "increase_boost_score", {amount = 1})
 
 	elseif message_id == hash("check_boost") then
 		print("Global boost status requested, sending response:", boost)
@@ -163,8 +163,9 @@ function on_message(self, message_id, message, sender)
 		self.score = self.score + message.amount	
 		msg.post("player#player_bar", "update_score_text", {score = self.score})
 		print("Player score:", self.score)
-		msg.post("stats:/gui_stats#stats", "update_score_text", {score = self.score})
+		msg.post("game_controller:/game_controller#game_controller", "update_total_coins", {amount = 1})
 	elseif message_id == INCREASE_LIFE then
+		msg.post("game_controller:/game_controller#game_controller", "increase_hearts_picked_score", {amount = 1})
 		life = life + message.amount
 		msg.post("player#player_bar", "update_life")
 

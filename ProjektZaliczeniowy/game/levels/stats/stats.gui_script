@@ -1,37 +1,70 @@
 local TOUCH_INPUT = hash("touch")
 
+
 local function set_score_boost(self, score)
 	local score_text = gui.get_node("boost_counter")
-	gui.set_text(score_text, boost_counter)
+	gui.set_text(score_text, tostring(score)) 
 end
 
+
 local function set_score_coins(self, score)
-	local score_text = gui.get_node("total_coins")
-	gui.set_text(score_text, total_coins)
+	local score_text = gui.get_node("coins_counter")
+	gui.set_text(score_text, tostring(score))
 end
+
 
 local function set_score_hearts(self, score)
 	local score_text = gui.get_node("hearts_counter")
-	gui.set_text(score_text, score)
+	gui.set_text(score_text, tostring(score))
 end
 
+-- Function to set the score for enemies
 local function set_score_enemies(self, score)
 	local score_text = gui.get_node("enemies_counter")
-	gui.set_text(score_text, score)
+	gui.set_text(score_text, tostring(score))
+end
+
+-- Function to load game data
+local function load_game_data(self)
+	local SAVE_FILE = sys.get_save_file("my_game", "game_data")
+	local data = sys.load(SAVE_FILE)
+
+	if data then
+		set_score_coins(self, data.total_coins or 0)
+		set_score_boost(self, data.total_boosts or 0)
+		set_score_hearts(self, data.total_hearts_picked or 0)
+		set_score_enemies(self, data.total_enemies_killed or 0)
+		print("Game data loaded successfully!")
+	else
+		print("No save file found, initializing with default values.")
+		-- Set default values if no data is found
+		set_score_coins(self, 0)
+		set_score_boost(self, 0)
+		set_score_hearts(self, 0)
+		set_score_enemies(self, 0)
+	end
 end
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
 	print(msg.url())
+
+	-- Load the game data and set scores in the GUI
+	load_game_data(self)
 end
-
-
 
 function on_input(self, action_id, action)
 	if action_id == TOUCH_INPUT and action.pressed then
 		if gui.pick_node(gui.get_node("return_button"), action.x, action.y) then
 			msg.post("game_controller:/game_controller#game_controller", "load_level", {level = hash("submenu")})
+		end
 	end
 end
-end
 
+function on_message(self, message_id, message, sender)
+	if message_id == hash("update_life") then
+		-- Handle life updates here if needed
+	elseif message_id == hash("update_total_coins") then
+		set_score_coins(self, message.coins)
+	end
+end

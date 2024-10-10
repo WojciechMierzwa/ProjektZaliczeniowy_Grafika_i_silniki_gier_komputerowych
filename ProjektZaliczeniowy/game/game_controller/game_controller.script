@@ -1,18 +1,48 @@
-
 local INCREASE_SCORE = hash("increase_score")
 local INCREASE_ENEMY_SCORE = hash("increase_enemy_score")
 local INCREASE_BOOST_SCORE = hash("increase_boost_score")
 local INCREASE_HEARTS_PICKED_SCORE = hash("increase_hearts_picked_score")
 
+local SAVE_FILE = sys.get_save_file("my_game", "game_data")
 
+-- Function to save game data
+local function save_game_data(self)
+	local data = {
+		total_coins = self.total_coins or 0,
+		total_boosts = self.total_boosts or 0,
+		total_enemies_killed = self.total_enemies_killed or 0,
+		total_hearts_picked = self.total_hearts_picked or 0
+	}
+	sys.save(SAVE_FILE, data)
+	print("Game data saved successfully!")
+end
+
+-- Function to load game data
+local function load_game_data(self)
+	local data = sys.load(SAVE_FILE)
+	if data then
+		self.total_coins = data.total_coins or 0
+		self.total_boosts = data.total_boosts or 0
+		self.total_enemies_killed = data.total_enemies_killed or 0
+		self.total_hearts_picked = data.total_hearts_picked or 0
+		print("Game data loaded successfully!")
+	else
+		-- Initialize values if no saved data is found
+		self.total_coins = 0
+		self.total_boosts = 0
+		self.total_enemies_killed = 0
+		self.total_hearts_picked = 0
+		print("No save file found, initializing with default values.")
+	end
+end
+
+-- Function to load a new level
 local function load_level (self, level_to_load)
 	if self.current_level ~= nil then
 		msg.post(self.current_level, "unload")
 	end
-
 	level_to_load = "#" .. level_to_load
 	self.current_level = level_to_load
-
 	msg.post(level_to_load, "load")
 end
 
@@ -20,28 +50,23 @@ function init(self)
 	self.current_level = nil
 	self.reloading_level = false
 
-	--variables to track 
-	self.total_coins = 0
-	self.total_boosts = 0
-	self.total_enemies_killed = 0
-	self.total_hearts_picked = 0
-	
+	load_game_data(self)
+
 	msg.post("@render:", "clear_color", { color = vmath.vector4(0.5, 0.5, 1, 1) } )
 	msg.post(".", "acquire_input_focus")
 	print(msg.url())
 	load_level(self, "menu")
 end
 
-
-local function reload_level (self)
+-- Reload the current level
+local function reload_level(self)
 	self.reloading_level = true
 	msg.post(self.current_level, "disable")
 	msg.post(self.current_level, "final")
 	msg.post(self.current_level, "unload")
 end
 
-
-
+-- Handle messages
 function on_message(self, message_id, message, sender)
 	if message_id == hash("load_level") then
 		load_level(self, message.level)
@@ -53,11 +78,16 @@ function on_message(self, message_id, message, sender)
 		msg.post(sender, "enable")
 	elseif message_id == INCREASE_SCORE then
 		self.total_coins = self.total_coins + message.amount
-		print("Total coins ")
-		print(self.total_coins)
+	elseif message_id == INCREASE_ENEMY_SCORE then
+		self.total_enemies_killed = self.total_enemies_killed + message.amount
+	elseif message_id == INCREASE_BOOST_SCORE  then
+		self.total_boosts = self.total_boosts + message.amount
+	elseif message_id == INCREASE_HEARTS_PICKED_SCORE then
+		self.total_hearts_picked = self.total_hearts_picked + message.amount
 	elseif message_id == hash("proxy_unloaded") then
 		if self.reloading_level == true then
 			msg.post(self.current_level, "load")
 		end
 	end
+	save_game_data(self)
 end

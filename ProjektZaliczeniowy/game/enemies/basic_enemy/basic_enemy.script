@@ -57,14 +57,16 @@ function die(self)
 			go.animate(".", "position.y", go.PLAYBACK_ONCE_FORWARD, PREV_POS.y, go.EASING_INSINE, duration / 2)
 		end)
 	end)
+	
 
 	timer.delay(duration + 0.7, false, function() 
-		go.delete() 
+		go.delete()
+		msg.post("game_controller:/game_controller#game_controller", "increase_enemy_score", {amount = 1})
 	end)
 end
 
-local DAMAGE_COOLDOWN = 1  -- 1 second delay before life can be decremented again
-local can_take_damage = true  -- Damage flag to prevent rapid life loss
+local DAMAGE_COOLDOWN = 1  
+local can_take_damage = true 
 
 
 function on_message(self, message_id, message, sender)
@@ -80,19 +82,14 @@ function on_message(self, message_id, message, sender)
 				print("Boost deactivated after 0.5 seconds.")
 			end)
 		else
-			-- Check if player can take damage
 			if can_take_damage then
 				life = life - 1
 				is_hurt=true
 				print("Player life:", life)
-
-				-- Set can_take_damage to false to initiate cooldown
 				can_take_damage = false
 				msg.post("player#player_bar", "update_life")
-				-- Start cooldown timer, after which player can take damage again
 				if life == 0 then
 					msg.post("game_controller:/game_controller#game_controller", "reload_level")
-					--go to level map
 				end
 				timer.delay(DAMAGE_COOLDOWN, false, function()
 					can_take_damage = true

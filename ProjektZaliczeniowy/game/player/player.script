@@ -4,7 +4,7 @@ local MAX_FALL_SPEED = 500
 local JUMP_SPEED = 300
 local NORMAL_THRESHOLD = 0.8
 
-
+total_coins = 0
 boost = false
 life = 3
 is_hurt = false
@@ -160,7 +160,7 @@ function on_message(self, message_id, message, sender)
 
 	elseif message_id == INCREASE_SCORE then
 		sound.play("#sound_coin")
-		self.score = self.score + message.amount
+		self.score = self.score + message.amount	
 		msg.post("player#player_bar", "update_score_text", {score = self.score})
 		print("Player score:", self.score)
 	elseif message_id == INCREASE_LIFE then

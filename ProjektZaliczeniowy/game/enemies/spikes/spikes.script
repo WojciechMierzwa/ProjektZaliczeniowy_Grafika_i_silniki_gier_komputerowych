@@ -22,9 +22,38 @@ function init(self)
 	end
 end
 
+local DAMAGE_COOLDOWN = 1  -- 1 second delay before life can be decremented again
+local can_take_damage = true  -- Damage flag to prevent rapid life loss
+
 function on_message(self, message_id, message, sender)
 	if message_id == TRIGGER_RESPONSE and message.group == PLAYER_GROUP then
-		--msg.post("game_controller:/game_controller#game_controller", "reload_level")
-		lose_life()
+		print("Enemy collided with player!")
+
+		if boost == true then
+			--
+		else
+			-- Check if player can take damage
+			if can_take_damage then
+				life = life - 1
+				is_hurt=true
+				print("Player life:", life)
+
+				-- Set can_take_damage to false to initiate cooldown
+				can_take_damage = false
+				msg.post("player#player_bar", "update_life")
+				-- Start cooldown timer, after which player can take damage again
+				if life == 0 then
+					msg.post("game_controller:/game_controller#game_controller", "reload_level")
+					--go to level map
+				end
+				timer.delay(DAMAGE_COOLDOWN, false, function()
+					can_take_damage = true
+					is_hurt=false
+					print("Player can take damage again.")
+				end)
+			else
+				print("Player is in damage cooldown, can't take damage.")
+			end
+		end
 	end
 end

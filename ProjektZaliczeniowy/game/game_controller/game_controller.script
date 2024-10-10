@@ -1,3 +1,10 @@
+
+local INCREASE_SCORE = hash("increase_score")
+local INCREASE_ENEMY_SCORE = hash("increase_enemy_score")
+local INCREASE_BOOST_SCORE = hash("increase_boost_score")
+local INCREASE_HEARTS_PICKED_SCORE = hash("increase_hearts_picked_score")
+
+
 local function load_level (self, level_to_load)
 	if self.current_level ~= nil then
 		msg.post(self.current_level, "unload")
@@ -12,6 +19,13 @@ end
 function init(self)
 	self.current_level = nil
 	self.reloading_level = false
+
+	--variables to track 
+	self.total_coins = 0
+	self.total_boosts = 0
+	self.total_enemies_killed = 0
+	self.total_hearts_picked = 0
+	
 	msg.post("@render:", "clear_color", { color = vmath.vector4(0.5, 0.5, 1, 1) } )
 	msg.post(".", "acquire_input_focus")
 	print(msg.url())
@@ -37,6 +51,10 @@ function on_message(self, message_id, message, sender)
 		self.reloading_level = false
 		msg.post(sender, "init")
 		msg.post(sender, "enable")
+	elseif message_id == INCREASE_SCORE then
+		self.total_coins = self.total_coins + message.amount
+		print("Total coins ")
+		print(self.total_coins)
 	elseif message_id == hash("proxy_unloaded") then
 		if self.reloading_level == true then
 			msg.post(self.current_level, "load")

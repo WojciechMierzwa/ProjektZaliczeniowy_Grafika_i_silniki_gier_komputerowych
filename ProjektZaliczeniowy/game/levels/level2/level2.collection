@@ -19,6 +19,106 @@ instances {
     z: 1.0
   }
 }
+instances {
+  id: "coin"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 184.0
+    y: 430.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin1"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 368.0
+    y: 468.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin2"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 610.0
+    y: 535.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin3"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 952.0
+    y: 507.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "flag"
+  prototype: "/game/objects/flag/flag.go"
+  position {
+    x: 1242.0
+    y: 570.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "level2"

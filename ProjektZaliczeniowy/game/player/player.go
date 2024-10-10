@@ -66,6 +66,7 @@ embedded_components {
   "mask: \"life\"\n"
   "mask: \"key\"\n"
   "mask: \"boost\"\n"
+  "mask: \"flag\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_SPHERE\n"

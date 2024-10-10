@@ -163,6 +163,7 @@ function on_message(self, message_id, message, sender)
 		self.score = self.score + message.amount	
 		msg.post("player#player_bar", "update_score_text", {score = self.score})
 		print("Player score:", self.score)
+		msg.post("stats:/gui_stats#stats", "update_score_text", {score = self.score})
 	elseif message_id == INCREASE_LIFE then
 		life = life + message.amount
 		msg.post("player#player_bar", "update_life")

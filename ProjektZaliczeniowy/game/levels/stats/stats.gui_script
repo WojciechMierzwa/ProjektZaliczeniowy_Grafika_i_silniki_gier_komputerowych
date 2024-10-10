@@ -1,0 +1,37 @@
+local TOUCH_INPUT = hash("touch")
+
+local function set_score_boost(self, score)
+	local score_text = gui.get_node("boost_counter")
+	gui.set_text(score_text, boost_counter)
+end
+
+local function set_score_coins(self, score)
+	local score_text = gui.get_node("total_coins")
+	gui.set_text(score_text, total_coins)
+end
+
+local function set_score_hearts(self, score)
+	local score_text = gui.get_node("hearts_counter")
+	gui.set_text(score_text, score)
+end
+
+local function set_score_enemies(self, score)
+	local score_text = gui.get_node("enemies_counter")
+	gui.set_text(score_text, score)
+end
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	print(msg.url())
+end
+
+
+
+function on_input(self, action_id, action)
+	if action_id == TOUCH_INPUT and action.pressed then
+		if gui.pick_node(gui.get_node("return_button"), action.x, action.y) then
+			msg.post("game_controller:/game_controller#game_controller", "load_level", {level = hash("submenu")})
+	end
+end
+end
+

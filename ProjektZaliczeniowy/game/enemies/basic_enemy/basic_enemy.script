@@ -2,20 +2,17 @@ go.property("move_direction", vmath.vector3())
 go.property("move_distance", 100)
 go.property("move_speed", 20)
 
-
 local TRIGGER_RESPONSE = hash("trigger_response")
 local PLAYER_GROUP = hash("player")
-local PREV_POS
-local current_animation
 
 function init(self)
+	-- Initialize instance-specific variables
+	self.PREV_POS = go.get_position()
+	self.current_animation = nil  -- Local to each instance
+
 	local pos = go.get_position()
 	local to = pos + (self.move_direction * self.move_distance)
 	local duration = self.move_distance / self.move_speed
-
-	if PREV_POS == nil then
-		PREV_POS = pos
-	end
 
 	go.animate(".", "position", go.PLAYBACK_LOOP_PINGPONG, to, go.EASING_LINEAR, duration)
 end
@@ -23,42 +20,42 @@ end
 function update(self, dt)
 	local pos = go.get_position()
 
-	if pos.x < PREV_POS.x then
-		if current_animation ~= "dino_walk_reverse" then
+	-- Check for direction and play the corresponding animation
+	if pos.x < self.PREV_POS.x then
+		if self.current_animation ~= "dino_walk_reverse" then
 			sprite.play_flipbook("#sprite", "dino_walk_reverse")
-			current_animation = "dino_walk_reverse"
+			self.current_animation = "dino_walk_reverse"
 		end
-	elseif pos.x > PREV_POS.x then
-		if current_animation ~= "dino_walk" then
+	elseif pos.x > self.PREV_POS.x then
+		if self.current_animation ~= "dino_walk" then
 			sprite.play_flipbook("#sprite", "dino_walk")
-			current_animation = "dino_walk"
+			self.current_animation = "dino_walk"
 		end
 	end
 
 	-- Update previous position
-	PREV_POS = pos
+	self.PREV_POS = pos
 end
 
 function die(self)
-	is_alive = false
-
-	sprite.play_flipbook("#sprite", "dino_die")
-
 	local knockback_distance_x = 200  
 	local arch_height = 150 
 	local duration = 0.75 
 
 	go.cancel_animations(".", "position")
 
-	timer.delay(0.1, false, function() 
-		go.animate(".", "position.x", go.PLAYBACK_ONCE_FORWARD, PREV_POS.x + knockback_distance_x, go.EASING_OUTQUAD, duration)
+	-- Play die animation
+	sprite.play_flipbook("#sprite", "dino_die")  
 
-		go.animate(".", "position.y", go.PLAYBACK_ONCE_FORWARD, PREV_POS.y + arch_height, go.EASING_OUTSINE, duration / 2, 0, function()
-			go.animate(".", "position.y", go.PLAYBACK_ONCE_FORWARD, PREV_POS.y, go.EASING_INSINE, duration / 2)
+	-- Delay for the animation before moving
+	timer.delay(0.1, false, function() 
+		go.animate(".", "position.x", go.PLAYBACK_ONCE_FORWARD, self.PREV_POS.x + knockback_distance_x, go.EASING_OUTQUAD, duration)
+		go.animate(".", "position.y", go.PLAYBACK_ONCE_FORWARD, self.PREV_POS.y + arch_height, go.EASING_OUTSINE, duration / 2, 0, function()
+			go.animate(".", "position.y", go.PLAYBACK_ONCE_FORWARD, self.PREV_POS.y, go.EASING_INSINE, duration / 2)
 		end)
 	end)
-	
 
+	-- Delay to allow for the animation to finish before deleting the object
 	timer.delay(duration + 0.7, false, function() 
 		go.delete()
 		msg.post("game_controller:/game_controller#game_controller", "increase_enemy_score", {amount = 1})
@@ -67,7 +64,6 @@ end
 
 local DAMAGE_COOLDOWN = 1  
 local can_take_damage = true 
-
 
 function on_message(self, message_id, message, sender)
 	if message_id == TRIGGER_RESPONSE and message.group == PLAYER_GROUP then
@@ -84,16 +80,18 @@ function on_message(self, message_id, message, sender)
 		else
 			if can_take_damage then
 				life = life - 1
-				is_hurt=true
+				is_hurt = true
 				print("Player life:", life)
 				can_take_damage = false
 				msg.post("player#player_bar", "update_life")
+
 				if life == 0 then
 					msg.post("game_controller:/game_controller#game_controller", "reload_level")
 				end
+
 				timer.delay(DAMAGE_COOLDOWN, false, function()
 					can_take_damage = true
-					is_hurt=false
+					is_hurt = false
 					print("Player can take damage again.")
 				end)
 			else

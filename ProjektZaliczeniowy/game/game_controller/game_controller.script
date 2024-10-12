@@ -11,7 +11,8 @@ local function save_game_data(self)
 		total_coins = self.total_coins or 0,
 		total_boosts = self.total_boosts or 0,
 		total_enemies_killed = self.total_enemies_killed or 0,
-		total_hearts_picked = self.total_hearts_picked or 0
+		total_hearts_picked = self.total_hearts_picked or 0,
+		total_hearts_counter = self.total_hearts_counter or 3
 	}
 	sys.save(SAVE_FILE, data)
 	print("Game data saved successfully!")
@@ -25,6 +26,7 @@ local function load_game_data(self)
 		self.total_boosts = data.total_boosts or 0
 		self.total_enemies_killed = data.total_enemies_killed or 0
 		self.total_hearts_picked = data.total_hearts_picked or 0
+		self.total_hearts_counter = data.total_hearts_counter or 3
 		print("Game data loaded successfully!")
 	else
 		-- Initialize values if no saved data is found
@@ -32,6 +34,7 @@ local function load_game_data(self)
 		self.total_boosts = 0
 		self.total_enemies_killed = 0
 		self.total_hearts_picked = 0
+		self.total_hearts_counter = 3
 		print("No save file found, initializing with default values.")
 	end
 end

@@ -63,8 +63,8 @@ instances {
   id: "key"
   prototype: "/game/objects/key/key.go"
   position {
-    x: 194.0
-    y: 283.0
+    x: 1808.0
+    y: 495.0
     z: 0.0
   }
   rotation {
@@ -211,8 +211,8 @@ instances {
   id: "life"
   prototype: "/game/objects/life/life.go"
   position {
-    x: 138.0
-    y: 277.0
+    x: 593.0
+    y: 301.0
     z: 0.0
   }
   rotation {
@@ -271,7 +271,7 @@ instances {
   id: "boost1"
   prototype: "/game/objects/boost/boost.go"
   position {
-    x: 64.0
+    x: 148.0
     y: 278.0
     z: 0.0
   }
@@ -284,6 +284,251 @@ instances {
   scale3 {
     x: 1.0
     y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "basic_enemy1"
+  prototype: "/game/enemies/basic_enemy/basic_enemy.go"
+  position {
+    x: 826.0
+    y: 243.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "basic_enemy"
+    properties {
+      id: "move_direction"
+      value: "1.0, 0.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+  }
+  scale3 {
+    x: 2.0
+    y: 2.0
+    z: 1.0
+  }
+}
+instances {
+  id: "bat"
+  prototype: "/game/enemies/bat/bat.go"
+  position {
+    x: 1311.0
+    y: 305.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "bat1"
+    properties {
+      id: "move_direction"
+      value: "0.0, 1.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "bat1"
+  prototype: "/game/enemies/bat/bat.go"
+  position {
+    x: 1691.0
+    y: 423.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0087264525
+    y: 0.0043631434
+    z: -3.8076574E-5
+    w: 0.9999524
+  }
+  component_properties {
+    id: "bat1"
+    properties {
+      id: "move_direction"
+      value: "0.0, 1.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "bat2"
+  prototype: "/game/enemies/bat/bat.go"
+  position {
+    x: 2519.0
+    y: 370.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.008726535
+    y: 0.0
+    z: 0.0
+    w: 0.9999619
+  }
+  component_properties {
+    id: "bat1"
+    properties {
+      id: "move_direction"
+      value: "0.0, 1.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+  }
+  scale3 {
+    x: 2.0
+    y: 2.0
+    z: 1.0
+  }
+}
+instances {
+  id: "basic_enemy2"
+  prototype: "/game/enemies/basic_enemy/basic_enemy.go"
+  position {
+    x: 2334.0
+    y: 371.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "basic_enemy"
+    properties {
+      id: "move_direction"
+      value: "1.0, 0.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "move_distance"
+      value: "50.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+  }
+  scale3 {
+    x: 2.0
+    y: 2.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin2"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 721.0
+    y: 274.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.8
+    y: 0.8
+    z: 1.0
+  }
+}
+instances {
+  id: "coin3"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 1128.0
+    y: 303.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.8
+    y: 0.8
+    z: 1.0
+  }
+}
+instances {
+  id: "coin4"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 1526.0
+    y: 302.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.8
+    y: 0.8
+    z: 1.0
+  }
+}
+instances {
+  id: "coin5"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 2097.0
+    y: 431.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.8
+    y: 0.8
+    z: 1.0
+  }
+}
+instances {
+  id: "coin6"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 2768.0
+    y: 431.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.8
+    y: 0.8
     z: 1.0
   }
 }

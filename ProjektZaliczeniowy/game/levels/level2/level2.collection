@@ -103,8 +103,8 @@ instances {
   id: "flag"
   prototype: "/game/objects/flag/flag.go"
   position {
-    x: 1242.0
-    y: 570.0
+    x: 3250.0
+    y: 924.0
     z: 0.0
   }
   rotation {
@@ -160,6 +160,315 @@ instances {
     y: 0.0
     z: 0.0
     w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "basic_enemy"
+  prototype: "/game/enemies/basic_enemy/basic_enemy.go"
+  position {
+    x: 611.0
+    y: 520.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.008726535
+    y: 0.0
+    z: 0.0
+    w: 0.9999619
+  }
+  component_properties {
+    id: "basic_enemy"
+    properties {
+      id: "move_direction"
+      value: "1.0, 0.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "spikes"
+  prototype: "/game/enemies/spikes/spikes.go"
+  position {
+    x: 431.0
+    y: 430.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "spikes1"
+    properties {
+      id: "gray"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "spikes1"
+  prototype: "/game/enemies/spikes/spikes.go"
+  position {
+    x: 944.0
+    y: 493.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "spikes1"
+    properties {
+      id: "gray"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "spikes2"
+  prototype: "/game/enemies/spikes/spikes.go"
+  position {
+    x: 1001.0
+    y: 494.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "spikes1"
+    properties {
+      id: "yellow"
+      value: "true"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "gray"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin4"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 1529.0
+    y: 466.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin5"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 1799.0
+    y: 531.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin6"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 2406.0
+    y: 558.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "bat1"
+  prototype: "/game/enemies/bat/bat.go"
+  position {
+    x: 1284.0
+    y: 461.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "bat1"
+    properties {
+      id: "move_direction"
+      value: "0.0, 1.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "is_evil"
+      value: "true"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "bat2"
+  prototype: "/game/enemies/bat/bat.go"
+  position {
+    x: 1998.0
+    y: 511.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.008726203
+    y: 0.008726203
+    z: -7.615242E-5
+    w: 0.9999238
+  }
+  component_properties {
+    id: "bat1"
+    properties {
+      id: "move_direction"
+      value: "0.0, 1.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "is_evil"
+      value: "true"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "basic_enemy1"
+  prototype: "/game/enemies/basic_enemy/basic_enemy.go"
+  position {
+    x: 2336.0
+    y: 552.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "basic_enemy"
+    properties {
+      id: "move_direction"
+      value: "1.0, 0.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "basic_enemy2"
+  prototype: "/game/enemies/basic_enemy/basic_enemy.go"
+  position {
+    x: 2723.0
+    y: 711.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.008726535
+    y: 0.0
+    z: 0.0
+    w: 0.9999619
+  }
+  component_properties {
+    id: "basic_enemy"
+    properties {
+      id: "move_direction"
+      value: "1.0, 0.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "move_distance"
+      value: "200.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "move_speed"
+      value: "25.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
   }
   scale3 {
     x: 1.0

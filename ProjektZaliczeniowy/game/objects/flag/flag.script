@@ -9,6 +9,6 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == TRIGGER_RESPONSE and message.group == PLAYER_GROUP then
-		msg.post("game_controller:/game_controller#game_controller", "load_level", {level = hash("submenu")})
+		msg.post("game_controller:/game_controller#game_controller", "load_level", {level = hash("level_completed")})
 	end
 end

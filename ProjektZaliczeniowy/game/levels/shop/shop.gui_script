@@ -7,31 +7,37 @@ local function set_score_coins(self, score)
 	local wallet_text = gui.get_node("wallet") -- Assuming your wallet node is called "wallet"
 	gui.set_text(wallet_text, tostring(score)) -- Display total coins in GUI
 end
--- Save game data, including total_coins (wallet)
-local function save_game_data(self)
+
+local wallet = 0
+local hearts_picked = 0
+local boosts = 0
+local enemies = 0
+local hearts_counter = 3
+
+local function save_game_data()
 	local data = {
-		total_coins = self.total_coins or 0, -- Save total coins (wallet)
-		total_boosts = self.total_boosts or 0,
-		total_enemies_killed = self.total_enemies_killed or 0,
-		total_hearts_picked = self.total_hearts_picked or 0,
-		total_hearts_counter = self.total_hearts_counter or 3
+		total_coins = wallet,
+		total_boosts = boosts,
+		total_enemies_killed = enemies,
+		total_hearts_picked = hearts_picked,
+		total_hearts_counter = hearts_counter
 	}
 	sys.save(SAVE_FILE, data)
 	print("Game data saved successfully!")
 end
 
-wallet = 0
-hearts = 0
-
 -- Function to load game data, including total_coins (wallet)
 local function load_game_data(self)
-	local SAVE_FILE = sys.get_save_file("my_game", "game_data")
 	local data = sys.load(SAVE_FILE)
 
 	if data then
 		set_score_coins(self, data.total_coins or 0)
-		wallet = data.total_coins
-		hearts = data.total_hearts_counter
+		wallet = data.total_coins or 0
+		hearts_counter = data.total_hearts_counter or 3
+		hearts_picked = data.total_hearts_picked or 0
+		boosts = data.total_boosts or 0
+		enemies = data.total_enemies_killed or 0
+
 		print("Game data loaded successfully!")
 	else
 		print("No save file found, initializing with default values.")
@@ -47,8 +53,6 @@ function init(self)
 	-- Load the game data
 	load_game_data(self)
 	print(wallet)
-	
-	-- Set the wallet (coins) display in the GUI
 end
 
 function on_input(self, action_id, action)
@@ -58,12 +62,12 @@ function on_input(self, action_id, action)
 			msg.post("game_controller:/game_controller#game_controller", "load_level", {level = hash("submenu")})
 			-- Check if the buy box is pressed (e.g., purchasing a heart)
 		elseif gui.pick_node(gui.get_node("buy_box"), action.x, action.y) then
-			if wallet >= 5 then -- Ensure the player has enough coins
-				self.total_hearts_counter = self.total_hearts_counter + 1 -- Increment life
-				self.total_coins = wallet - 5 
-				save_game_data(self)
-				print("Heart purchased, remaining coins:", self.total_coins)
-				load_game_data(self)
+			if wallet >= 30 then -- Ensure the player has enough coins
+				hearts_counter = hearts_counter + 1 -- Increment life
+				wallet = wallet - 30
+				save_game_data()
+				print("Heart purchased, remaining coins:", wallet)
+				set_score_coins(self, wallet) -- Update the wallet display in the GUI
 			else
 				print("Not enough coins!")
 			end
@@ -74,8 +78,8 @@ end
 function on_message(self, message_id, message, sender)
 	-- Handle message to update total coins in the wallet
 	if message_id == hash("update_total_coins") then
-		self.total_coins = message.coins -- Update total coins from the message
-		set_score_coins(self, self.total_coins) 
-		save_game_data(self) -- Save the updated wallet data
+		wallet = message.coins -- Update total coins from the message
+		set_score_coins(self, wallet) -- Update the wallet display in the GUI
+		save_game_data() -- Save the updated wallet data
 	end
 end

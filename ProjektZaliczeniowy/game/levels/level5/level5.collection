@@ -3,9 +3,9 @@ instances {
   id: "player"
   prototype: "/game/player/player.go"
   position {
-    x: 21.0
+    x: 17.0
     y: 339.0
-    z: 0.0
+    z: 1.0
   }
   rotation {
     x: 0.0
@@ -23,8 +23,8 @@ instances {
   id: "boss"
   prototype: "/game/enemies/boss/boss.go"
   position {
-    x: 233.0
-    y: 337.0
+    x: 886.0
+    y: 480.0
     z: 0.0
   }
   rotation {
@@ -42,7 +42,170 @@ instances {
     }
     properties {
       id: "move_distance"
-      value: "200.0"
+      value: "600.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "move_speed"
+      value: "30.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+  }
+  scale3 {
+    x: 2.0
+    y: 2.0
+    z: 2.0
+  }
+}
+instances {
+  id: "special_boost"
+  prototype: "/game/objects/special_boost/special_boost.go"
+  position {
+    x: 593.0
+    y: 563.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "special_boost1"
+  prototype: "/game/objects/special_boost/special_boost.go"
+  position {
+    x: 1842.0
+    y: 563.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "life"
+  prototype: "/game/objects/life/life.go"
+  position {
+    x: 912.0
+    y: 726.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "life1"
+  prototype: "/game/objects/life/life.go"
+  position {
+    x: 1551.0
+    y: 726.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "life2"
+  prototype: "/game/objects/life/life.go"
+  position {
+    x: 1840.0
+    y: 726.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "life3"
+  prototype: "/game/objects/life/life.go"
+  position {
+    x: 627.0
+    y: 726.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "bat"
+  prototype: "/game/enemies/bat/bat.go"
+  position {
+    x: 570.0
+    y: 726.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "bat1"
+    properties {
+      id: "move_direction"
+      value: "1.0, 0.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+    properties {
+      id: "move_distance"
+      value: "800.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "move_speed"
+      value: "40.0"
       type: PROPERTY_TYPE_NUMBER
     }
   }
@@ -53,11 +216,119 @@ instances {
   }
 }
 instances {
-  id: "special_boost"
-  prototype: "/game/objects/special_boost/special_boost.go"
+  id: "basic_enemy"
+  prototype: "/game/enemies/basic_enemy/basic_enemy.go"
   position {
-    x: 120.0
-    y: 341.0
+    x: 13.0
+    y: 599.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "basic_enemy"
+    properties {
+      id: "move_direction"
+      value: "1.0, 0.0, 0.0"
+      type: PROPERTY_TYPE_VECTOR3
+    }
+  }
+  scale3 {
+    x: 2.5
+    y: 2.5
+    z: 2.5
+  }
+}
+instances {
+  id: "coin"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 817.0
+    y: 744.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin1"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 1011.0
+    y: 744.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin2"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 1454.0
+    y: 744.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin3"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 1741.0
+    y: 744.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "coin4"
+  prototype: "/game/objects/coin/coin.go"
+  position {
+    x: 209.0
+    y: 460.0
     z: 0.0
   }
   rotation {

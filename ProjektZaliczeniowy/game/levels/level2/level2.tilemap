@@ -1572,6 +1572,14 @@ layers {
     rotate90: 0
   }
   cell {
+    x: 82
+    y: 17
+    tile: 114
+    h_flip: 0
+    v_flip: 0
+    rotate90: 0
+  }
+  cell {
     x: 80
     y: 18
     tile: 67
@@ -1583,6 +1591,14 @@ layers {
     x: 81
     y: 18
     tile: 69
+    h_flip: 0
+    v_flip: 0
+    rotate90: 0
+  }
+  cell {
+    x: 83
+    y: 20
+    tile: 114
     h_flip: 0
     v_flip: 0
     rotate90: 0

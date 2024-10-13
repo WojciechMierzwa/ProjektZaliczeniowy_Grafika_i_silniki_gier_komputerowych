@@ -191,6 +191,7 @@ function on_message(self, message_id, message, sender)
 
 		-- Update life and total_hearts_counter
 	elseif message_id == INCREASE_LIFE then
+		sound.play("#sound_life")
 		msg.post("game_controller:/game_controller#game_controller", "increase_hearts_picked_score", {amount = 1})
 		life = life + message.amount
 		self.total_hearts_counter = life -- Synchronize life with total_hearts_counter

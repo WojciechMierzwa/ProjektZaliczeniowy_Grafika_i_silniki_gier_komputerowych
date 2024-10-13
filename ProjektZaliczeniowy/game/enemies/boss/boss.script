@@ -15,6 +15,7 @@ function init(self)
 	self.attack_duration = 0.7 -- Duration of the attack
 	self.move_timer = 0 -- Timer for moving duration
 	self.move_duration = 2 -- Duration of the moving state
+	self.playing_move_sound = false  -- To prevent sound spam
 
 	local pos = go.get_position()
 	local to = pos + (self.move_direction * self.move_distance)
@@ -29,16 +30,24 @@ function update(self, dt)
 	-- Update movement and attack states
 	if self.state == "moving" then
 		self.move_timer = self.move_timer + dt
+		if not self.playing_move_sound then
+			sound.play("#sound_monster_walk")  -- Play walking sound once
+			self.playing_move_sound = true
+		end
+
 		if self.move_timer >= self.move_duration then
 			-- Transition to attack state
 			self.state = "attacking"
 			self.move_timer = 0
+			-- Stop walking sound when attacking starts
+			self.playing_move_sound = false
 			-- Play attack animation
 			if self.move_direction.x < 0 then
 				sprite.play_flipbook("#sprite", "boss_attack_reverse")  -- Move left
 			else
 				sprite.play_flipbook("#sprite", "boss_attack")  -- Move right
 			end
+			sound.play("#sound_monster_attack")  -- Play attack sound
 		end
 	elseif self.state == "attacking" then
 		self.attack_timer = self.attack_timer + dt
@@ -85,6 +94,7 @@ function die(self)
 
 	-- Play die animation
 	sprite.play_flipbook("#sprite", "boss_die")  
+	sound.play("#sound_monster_death")  -- Play death sound
 
 	-- Delay for the animation before moving
 	timer.delay(0.1, false, function() 
@@ -100,6 +110,7 @@ function die(self)
 		msg.post("game_controller:/game_controller#game_controller", "increase_enemy_score", {amount = 1})
 	end)
 	timer.delay(1, false, function()
+		sound.play("#sound_victory")  -- Play victory sound
 		print("Loading new level after boss defeat...")
 		msg.post("game_controller:/game_controller#game_controller", "load_level", {level = hash("level_completed")})
 	end)
@@ -114,9 +125,10 @@ function on_message(self, message_id, message, sender)
 
 		-- Check if the enemy is in attack mode
 		if self.state == "attacking" then
-			-- Boost doesn't work when enemy is attacking
+			sound.play("#sound_monster_attack")
 			print("Boost is inactive during attack, player loses 2 life!")
 			if can_take_damage then
+				sound.play("#sound_player_hurt")  -- Play player hurt sound
 				life = life - 2  -- Player loses 2 life instead of 1
 				is_hurt = true
 				print("Player life:", life)
@@ -150,6 +162,7 @@ function on_message(self, message_id, message, sender)
 					die(self)
 				else
 					-- If boss still has lives, play a hurt animation or sound
+					sound.play("#sound_monster_hurt")  -- Play boss hurt sound
 					sprite.play_flipbook("#sprite", "boss_hurt")  -- Assuming you have a hurt animation
 				end
 
@@ -160,6 +173,7 @@ function on_message(self, message_id, message, sender)
 				end)
 			else
 				if can_take_damage then
+					sound.play("#sound_player_hurt")  -- Play player hurt sound
 					life = life - 1  -- Player loses 1 life
 					is_hurt = true
 					print("Player life:", life)

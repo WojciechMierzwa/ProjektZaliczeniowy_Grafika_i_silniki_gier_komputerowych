@@ -63,7 +63,7 @@ embedded_components {
   }
 }
 embedded_components {
-  id: "spikes"
+  id: "sprite"
   type: "sprite"
   data: "default_animation: \"spikes_r\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
@@ -76,6 +76,29 @@ embedded_components {
   position {
     x: 1.0
     y: 1.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+embedded_components {
+  id: "sound_player_hurt"
+  type: "sound"
+  data: "sound: \"/assets/sound/player_hurt.ogg\"\n"
+  "looping: 0\n"
+  "group: \"master\"\n"
+  "gain: 1.0\n"
+  "pan: 0.0\n"
+  "speed: 1.0\n"
+  "loopcount: 0\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
     z: 0.0
   }
   rotation {

@@ -199,7 +199,7 @@ instances {
   id: "spikes"
   prototype: "/game/enemies/spikes/spikes.go"
   position {
-    x: 431.0
+    x: 209.0
     y: 430.0
     z: 0.0
   }
@@ -212,8 +212,18 @@ instances {
   component_properties {
     id: "spikes1"
     properties {
-      id: "gray"
+      id: "yellow"
       value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "blue"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "gray"
+      value: "true"
       type: PROPERTY_TYPE_BOOLEAN
     }
   }
@@ -241,7 +251,7 @@ instances {
     id: "spikes1"
     properties {
       id: "gray"
-      value: "false"
+      value: "true"
       type: PROPERTY_TYPE_BOOLEAN
     }
   }
@@ -269,12 +279,12 @@ instances {
     id: "spikes1"
     properties {
       id: "yellow"
-      value: "true"
+      value: "false"
       type: PROPERTY_TYPE_BOOLEAN
     }
     properties {
       id: "gray"
-      value: "false"
+      value: "true"
       type: PROPERTY_TYPE_BOOLEAN
     }
   }
@@ -589,6 +599,72 @@ instances {
     y: 0.0
     z: 0.0
     w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "spikes3"
+  prototype: "/game/enemies/spikes/spikes.go"
+  position {
+    x: 2828.0
+    y: 527.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "spikes1"
+    properties {
+      id: "yellow"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "gray"
+      value: "true"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "spikes4"
+  prototype: "/game/enemies/spikes/spikes.go"
+  position {
+    x: 2970.0
+    y: 527.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "spikes1"
+    properties {
+      id: "yellow"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+    properties {
+      id: "gray"
+      value: "true"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
   }
   scale3 {
     x: 1.0

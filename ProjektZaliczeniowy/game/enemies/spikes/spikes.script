@@ -5,20 +5,17 @@ go.property("gray", false)
 local TRIGGER_RESPONSE = hash("trigger_response")
 local PLAYER_GROUP = hash("player")
 
-
 function init(self)
-
-
-	go.animate(".", "position")
-
-	if self.yellow == true then
+	-- Animacja sprita w zależności od właściwości
+	if self.yellow then
 		sprite.play_flipbook("#sprite", "spikes_y")
-	end
-	if self.blue == true then
+	elseif self.blue then
 		sprite.play_flipbook("#sprite", "spikes_b")
-	end
-	if self.gray == true then
+	elseif self.gray then
 		sprite.play_flipbook("#sprite", "spikes_g")
+	else
+		-- Domyślna animacja jeśli żaden warunek nie został spełniony
+		sprite.play_flipbook("#sprite", "spikes_r")
 	end
 end
 
@@ -30,12 +27,13 @@ function on_message(self, message_id, message, sender)
 		print("Enemy collided with player!")
 
 		if boost == true then
-			--
+			-- Placeholder dla kodu boostu
 		else
 			-- Check if player can take damage
 			if can_take_damage then
+				sound.play("#sound_player_hurt")
 				life = life - 1
-				is_hurt=true
+				is_hurt = true
 				print("Player life:", life)
 
 				-- Set can_take_damage to false to initiate cooldown
@@ -48,7 +46,7 @@ function on_message(self, message_id, message, sender)
 				end
 				timer.delay(DAMAGE_COOLDOWN, false, function()
 					can_take_damage = true
-					is_hurt=false
+					is_hurt = false
 					print("Player can take damage again.")
 				end)
 			else

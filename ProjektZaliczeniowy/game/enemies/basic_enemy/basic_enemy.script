@@ -79,6 +79,7 @@ function on_message(self, message_id, message, sender)
 			end)
 		else
 			if can_take_damage then
+				sound.play("#sound_player_hurt")
 				life = life - 1
 				is_hurt = true
 				print("Player life:", life)

@@ -82,7 +82,7 @@ function on_message(self, message_id, message, sender)
 		msg.post(sender, "init")
 		msg.post(sender, "enable")
 	elseif message_id == INCREASE_SCORE then
-		self.total_coins = self.total_coins + message.amount +120
+		self.total_coins = self.total_coins + message.amount
 	elseif message_id == INCREASE_ENEMY_SCORE then
 		self.total_enemies_killed = self.total_enemies_killed + message.amount
 	elseif message_id == INCREASE_BOOST_SCORE  then

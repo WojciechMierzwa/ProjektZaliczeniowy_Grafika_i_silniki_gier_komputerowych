@@ -1,7 +1,27 @@
 local TOUCH_INPUT = hash("touch")
 
+
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
+end
+
+local function reset_save_file()
+	local SAVE_FILE = sys.get_save_file("my_game", "test")
+	local data = {
+		total_coins = 0,
+		total_boosts = 0,
+		total_enemies_killed = 0,
+		total_hearts_picked = 0,
+		total_hearts_counter = 3
+	}
+
+	local success = sys.save(SAVE_FILE, data)
+	if success then
+		print("Save file reset successfully.")
+	else
+		print("Failed to reset save file.")
+	end
 end
 
 
@@ -12,6 +32,8 @@ function on_input(self, action_id, action)
 			msg.post("game_controller:/game_controller#game_controller", "load_level", {level = hash("submenu")})
 		elseif gui.pick_node(gui.get_node("about_button"), action.x, action.y) then
 			msg.post("game_controller:/game_controller#game_controller", "load_level", {level = hash("about")})
+		elseif gui.pick_node(gui.get_node("reset_button"), action.x, action.y) then
+			reset_save_file()
 		elseif gui.pick_node(gui.get_node("quit_button"), action.x, action.y) then
 			msg.post("@system:", "exit", {code=0})
 		end

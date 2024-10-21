@@ -3,7 +3,7 @@ local INCREASE_ENEMY_SCORE = hash("increase_enemy_score")
 local INCREASE_BOOST_SCORE = hash("increase_boost_score")
 local INCREASE_HEARTS_PICKED_SCORE = hash("increase_hearts_picked_score")
 
-local SAVE_FILE = sys.get_save_file("my_game", "game_data")
+local SAVE_FILE = sys.get_save_file("my_game", "test")
 
 -- Function to save game data
 local function save_game_data(self)
@@ -14,6 +14,7 @@ local function save_game_data(self)
 		total_hearts_picked = self.total_hearts_picked or 0,
 		total_hearts_counter = self.total_hearts_counter or 3
 	}
+	
 	sys.save(SAVE_FILE, data)
 	print("Game data saved successfully!")
 end
@@ -72,6 +73,7 @@ end
 -- Handle messages
 function on_message(self, message_id, message, sender)
 	if message_id == hash("load_level") then
+		load_game_data(self)
 		load_level(self, message.level)
 	elseif message_id == hash("reload_level") then
 		reload_level(self)
@@ -80,7 +82,7 @@ function on_message(self, message_id, message, sender)
 		msg.post(sender, "init")
 		msg.post(sender, "enable")
 	elseif message_id == INCREASE_SCORE then
-		self.total_coins = self.total_coins + message.amount
+		self.total_coins = self.total_coins + message.amount +120
 	elseif message_id == INCREASE_ENEMY_SCORE then
 		self.total_enemies_killed = self.total_enemies_killed + message.amount
 	elseif message_id == INCREASE_BOOST_SCORE  then

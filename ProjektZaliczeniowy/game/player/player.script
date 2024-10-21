@@ -30,7 +30,7 @@ local INCREASE_LIFE = hash("increase_life")
 local HURT_ANIM = hash("player_hurt")
 local KNOCKBACK_FORCE = 200
 local KNOCKBACK_DURATION = 0.2
-local SAVE_FILE = sys.get_save_file("my_game", "save_data")
+local SAVE_FILE = sys.get_save_file("my_game", "test")
 
 -- Function to load game data
 local function load_game_data(self)
@@ -43,6 +43,7 @@ local function load_game_data(self)
 		self.total_hearts_counter = data.total_hearts_counter or 3
 		life = self.total_hearts_counter -- Set life from total_hearts_counter
 		print("Game data loaded successfully!")
+		
 	else
 		-- Initialize values if no saved data is found
 		self.total_coins = 0
@@ -189,6 +190,8 @@ function on_message(self, message_id, message, sender)
 		msg.post("player#player_bar", "update_score_text", {score = self.score})
 		print("Player score:", self.score)
 		msg.post("game_controller:/game_controller#game_controller", "update_total_coins", {amount = 1})
+		
+
 
 		-- Update life and total_hearts_counter
 	elseif message_id == INCREASE_LIFE then
@@ -198,7 +201,7 @@ function on_message(self, message_id, message, sender)
 		self.total_hearts_counter = life -- Synchronize life with total_hearts_counter
 		msg.post("player#player_bar", "update_life", {life = life}) -- If there is UI to update life
 
-		sys.save(SAVE_FILE, data)
+		sys.save(SAVE_FILE, self.data)
 	end
 end
 

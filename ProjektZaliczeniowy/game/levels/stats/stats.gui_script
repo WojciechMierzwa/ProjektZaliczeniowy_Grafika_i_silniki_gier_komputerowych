@@ -26,7 +26,7 @@ end
 
 -- Function to load game data
 local function load_game_data(self)
-	local SAVE_FILE = sys.get_save_file("my_game", "game_data")
+	local SAVE_FILE = sys.get_save_file("my_game", "test")
 	local data = sys.load(SAVE_FILE)
 
 	if data then

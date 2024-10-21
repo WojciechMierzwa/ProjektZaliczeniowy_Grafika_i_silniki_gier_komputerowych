@@ -12,6 +12,7 @@ is_hurt = false
 local MOVE_LEFT_INPUT = hash("move_left")
 local MOVE_RIGHT_INPUT = hash("move_right")
 local JUMP_INPUT = hash("jump")
+local QUIT = hash("quit")
 
 local IDLE_ANIM = hash("player_idle")
 local MOVE_ANIM = hash("player_move")
@@ -230,4 +231,9 @@ function on_input(self, action_id, action)
 	if action_id == JUMP_INPUT then
 		jump(self)
 	end
+
+	if action_id == QUIT then
+		msg.post("game_controller:/game_controller#game_controller", "load_level", {level = hash("submenu")})
+	end
+		
 end

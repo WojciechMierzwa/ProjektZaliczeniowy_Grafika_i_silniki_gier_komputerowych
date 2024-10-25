@@ -22,6 +22,7 @@ instances {
 instances {
   id: "boss"
   prototype: "/game/enemies/boss/boss.go"
+  children: "lifebar"
   position {
     x: 886.0
     y: 480.0
@@ -585,6 +586,124 @@ embedded_instances {
   scale3 {
     x: 1.0
     y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "lifebar"
+  children: "lifebar_background"
+  children: "lifebar_progress"
+  data: ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "lifebar_background"
+  data: "components {\n"
+  "  id: \"lifebar_background\"\n"
+  "  component: \"/assets/icons/lifebar_background.sprite\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "  property_decls {\n"
+  "  }\n"
+  "  scale {\n"
+  "    x: 0.05\n"
+  "    y: 0.05\n"
+  "    z: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 0.0
+    y: 40.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "lifebar_progress"
+  data: "components {\n"
+  "  id: \"lifebar_progress\"\n"
+  "  component: \"/assets/icons/lifebar_progress.sprite\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 1.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "  property_decls {\n"
+  "  }\n"
+  "}\n"
+  "components {\n"
+  "  id: \"lifebar\"\n"
+  "  component: \"/game/levels/level5/lifebar.script\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "  property_decls {\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 0.0
+    y: 40.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.05
+    y: 0.05
     z: 1.0
   }
 }

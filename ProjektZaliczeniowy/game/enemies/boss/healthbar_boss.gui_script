@@ -1,0 +1,17 @@
+-- healthbar_boss.gui_script
+
+function init(self)
+	-- Reference to the health bar node (name it 'boss_health_bar' or your node name)
+	self.health_bar = gui.get_node("boss_health_bar")  -- Replace with your health bar node name if different
+
+	-- Initialize with full health
+	gui.set_scale(self.health_bar, vmath.vector3(1, 1, 1))  -- Full scale (100% health)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("update_health") then
+		-- Update the scale of the health bar based on the boss's health percentage
+		local health_percentage = message.health
+		gui.animate(self.health_bar, "scale.x", health_percentage, gui.EASING_OUTSINE, 0.2)
+	end
+end

@@ -5,8 +5,12 @@ go.property("move_speed", 20)
 local TRIGGER_RESPONSE = hash("trigger_response")
 local PLAYER_GROUP = hash("player")
 
+
+
+
 function init(self)
 	-- Initialize instance-specific variables
+	
 	self.PREV_POS = go.get_position()
 	self.current_animation = nil
 	self.lives = 5 
@@ -151,13 +155,17 @@ function on_message(self, message_id, message, sender)
 			-- Enemy is not attacking, boost works
 			if boost == true then
 				print("Global boost is active, reducing boss life!")
-
+				
 				-- Reduce boss lives by 1
+				
 				self.lives = self.lives - 1
+				
+				msg.post("/lifebar_progress", "set_health", {health = self.lives, max_health=5})
 				print("Boss life:", self.lives)
 
 				-- If boss life reaches 0, boss dies
 				if self.lives <= 0 then
+					go.delete("/lifebar_progress")
 					sound.play("#sound_yeet")
 					die(self)
 				else

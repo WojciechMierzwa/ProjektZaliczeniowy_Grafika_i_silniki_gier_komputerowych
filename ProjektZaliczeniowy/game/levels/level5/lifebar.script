@@ -1,0 +1,17 @@
+local set_health = hash("set_health")
+
+function on_message(self, message_id, message, sender)
+	if message_id == set_health then
+		self.max_health = message.max_health
+		self.health = message.health
+
+		-- Pobierz bieżący rozmiar skali
+		local scale = go.get_scale("lifebar_progress")
+
+		-- Oblicz nową wartość scale.x na podstawie health
+		scale.x = (self.health / self.max_health)*0.03 -- użycie proporcji zdrowia do maksymalnego zdrowia
+
+		-- Ustaw nową skalę
+		go.set_scale(scale, "lifebar_progress")
+	end
+end

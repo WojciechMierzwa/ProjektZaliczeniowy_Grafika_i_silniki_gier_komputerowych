@@ -3,12 +3,6 @@
 ## Project Overview
 *The Color Chronicles* is a 2D platformer game inspired by classic titles like *Super Mario*. Developed using the **Defold** engine with **Lua** scripting, the game offers dynamic levels, various types of enemies, collectibles, and engaging gameplay mechanics designed to provide a fun and challenging experience for players.
 
-### Repository
-[GitHub Repository](https://github.com/WojciechMierzwa/ProjektZaliczeniowy_Grafika_i_silniki_gier_komputerowych)
-
-### Executable File
-[Download the Executable (.exe)](https://anselbpl-my.sharepoint.com/:u:/g/personal/20858_student_ans-elblag_pl/EUnn9YpkS2ZPm7D9hP5PZTYB03B9g7HvOHGYOgAjoDp8RA)
-
 ## Features
 - **Classic Platformer Gameplay**: Navigate through different levels, avoid obstacles, jump over gaps, and defeat enemies.
 - **Boost Mode**: Temporarily become invincible after attacking an enemy.
